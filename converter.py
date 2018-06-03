@@ -44,22 +44,26 @@ def main():
                 print(type_of_file, current_file)
                 proc.data_update(uob_parser(current_file))
         if current_file.endswith('pdf'):
-            print(current_file)
             text_file = current_file[:-3]+'txt'
-            # os.system('pdftotext -layout {}'.format(current_file, text_file))
-            # print(text_file)
-            # if type_of_file == 'OCBC_PDF':
-            #     proc.data_update(bank_ocbc_pdf_cleaner(text_file))
-            # if f.startswith('DBSD'):
-            #     proc.data_update(dbs_debit_cleaner(f))
-            # if f.startswith('DBSCR'):
-            #     proc.data_update(dbs_credit_cleaner(f))
-            # if f.startswith('DBSCUR'):
-            #     proc.data_update(dbs_current_cleaner(f))
-            # proc.correct()
-    # proc.write_data()
-    # for f in text_files:
-    #     os.system('rm -rf {}{}'.format(PDFS_PATH, f))
+            os.system('pdftotext -layout {}'.format(current_file.replace(' ', '\ ')))
+            if type_of_file == 'OCBC_PDF':
+                print(type_of_file, current_file)
+                proc.data_update(bank_ocbc_pdf_cleaner(text_file))
+            if type_of_file == 'DBSD':
+                print(type_of_file, current_file)
+                proc.data_update(dbs_debit_cleaner(text_file))
+            if type_of_file =='DBSCR':
+                print(type_of_file, current_file)
+                proc.data_update(dbs_credit_cleaner(text_file))
+            if type_of_file == 'DBSCUR':
+                print(type_of_file, current_file)
+                proc.data_update(dbs_current_cleaner(text_file))
+        proc.correct()
+    proc.write_data()
+
+    for f in path_scan(PDFS_PATH):
+        if f.endswith('txt'):
+            os.system('rm -rf %s'% f.replace(' ', '\ '))
 
 
 if __name__ == '__main__':
