@@ -24,7 +24,7 @@ def clean_description(description):
 
 
 def dbs_debit_cleaner(text_file):
-    with open('all_files_here/%s' % text_file) as file:
+    with open(text_file) as file:
         text = [l for l in file.readlines()]
     text = ''.join(text)
     data = []
@@ -57,7 +57,7 @@ def dbs_debit_cleaner(text_file):
 
 
 def dbs_credit_cleaner(text_file):
-    with open('all_files_here/%s' % text_file) as file:
+    with open(text_file) as file:
         text = [l for l in file.readlines()]
     text = ''.join(text)
     data = []
@@ -90,7 +90,7 @@ def dbs_credit_cleaner(text_file):
 
 
 def dbs_current_cleaner(text_file):
-    with open('all_files_here/%s' % text_file) as file:
+    with open(text_file) as file:
         text = [l for l in file.readlines()]
     text = ''.join(text)
     data = []
@@ -125,7 +125,7 @@ def dbs_current_cleaner(text_file):
 
 
 def get_tranc_from_current_acc(text_file):
-    with open('all_files_here/%s' % text_file) as file:
+    with open(text_file) as file:
         lines = [l.strip() for l in file.readlines()]
     data = []
     transactions = []

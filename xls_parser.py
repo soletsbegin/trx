@@ -26,7 +26,7 @@ def clean_description(description):
 
 
 def text_from_xls(input_file):
-    rb = xlrd.open_workbook(PATH + input_file, formatting_info=True)
+    rb = xlrd.open_workbook(input_file, formatting_info=True)
     sheet = rb.sheet_by_index(0)
     text = ''
     for rownum in range(sheet.nrows):
@@ -38,7 +38,7 @@ def text_from_xls(input_file):
 
 
 def list_from_xls(input_file):
-    rb = xlrd.open_workbook(PATH + input_file, formatting_info=True)
+    rb = xlrd.open_workbook(input_file, formatting_info=True)
     sheet = rb.sheet_by_index(0)
     text = []
     for rownum in range(sheet.nrows):

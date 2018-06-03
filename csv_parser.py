@@ -20,7 +20,7 @@ MONTH = {
 
 
 def get_text_from_dbs_csv(input_file):
-    with open(PATH + input_file) as csv_file:
+    with open(input_file) as csv_file:
         reader = csv.DictReader(csv_file)
         text = ''
         for l in reader:
@@ -29,7 +29,7 @@ def get_text_from_dbs_csv(input_file):
 
 
 def get_text_from_ocbc_csv(input_file):
-    with open(PATH + input_file) as csv_text:
+    with open(input_file) as csv_text:
         return [line.strip() for line in csv_text]
 
 
@@ -39,7 +39,7 @@ def clean_description(description):
 
 def dbs_csv_parser(input_file):
     text = get_text_from_dbs_csv(input_file)
-    with open(PATH + input_file) as csv_file:
+    with open(input_file) as csv_file:
         reader = csv.DictReader(csv_file)
         lines = list(l[None] for l in reader)
     data = []

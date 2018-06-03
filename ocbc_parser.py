@@ -6,7 +6,7 @@ def clean_description(description):
 
 
 def bank_ocbc_pdf_cleaner(text_file):
-    with open('all_files_here/%s' % text_file) as file:
+    with open(text_file) as file:
         text = [l for l in file.readlines()]
     text = ''.join(text)
     data = []
