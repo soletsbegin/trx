@@ -2,6 +2,8 @@ import csv
 import os
 import re
 
+from google_sheet_downloader import get_sheet
+
 PATH = os.path.join('all_files_here', '')
 MONTH = {
     'jan': '01',
@@ -141,7 +143,26 @@ def ocbc_csv_parser(input_file):
     return data
 
 
+def google_sheet_parser():
+    transactions = get_sheet()
+    data = []
+    for t in transactions:
+        date = t['Timestamp'].split()[0]
+        data.append({
+            'Bank': '',
+            'Account type': t['Type [Row 1]'],
+            'Account number': '',
+            'Person Name': '',
+            'Trans Date': date,
+            'Amount': t['AMOUNT'],
+            'Debit': '',
+            'Credit': '',
+            'ref1': t['DESCRIPTION'],
+            'ref2': '',
+            'ref3': '',
+        })
+    return data
+
+
 if __name__ == '__main__':
-    for file in os.listdir(PATH):
-        if file.endswith('.csv'):
-            ocbc_csv_parser(file)
+    pass

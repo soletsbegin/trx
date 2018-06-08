@@ -3,7 +3,7 @@ import os
 from csv_processor import CsvProcessor
 from ocbc_parser import bank_ocbc_pdf_cleaner
 from dbs_parser import dbs_debit_cleaner, dbs_credit_cleaner, dbs_current_cleaner
-from csv_parser import dbs_csv_parser, ocbc_csv_parser
+from csv_parser import dbs_csv_parser, ocbc_csv_parser, google_sheet_parser
 from xls_parser import uob_parser
 from file_scan import file_scan, path_scan, files_to_process
 
@@ -58,7 +58,8 @@ def main():
             if type_of_file == 'DBSCUR':
                 print(type_of_file, current_file)
                 proc.data_update(dbs_current_cleaner(text_file))
-        proc.correct()
+    proc.data_update(google_sheet_parser())
+    proc.correct()
     proc.write_data()
 
     for f in path_scan(PDFS_PATH):

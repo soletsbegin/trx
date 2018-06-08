@@ -1,5 +1,6 @@
 import os
 import PyPDF2
+import re
 
 from xls_parser import text_from_xls
 
@@ -27,6 +28,7 @@ def file_scan(list_of_files):
                     files_to_process.append((file, 'UOB_XLS'))
                     continue
         if file.endswith('.csv'):
+            # if re.match(r'\d{4}-\d\d-\d\d-\d\d-\d\d-\d\d'):
             with open(file) as csv_text:
                 for l in csv_text:
                     if 'NTUC-OCBC' in l:
