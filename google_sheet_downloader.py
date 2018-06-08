@@ -1,16 +1,16 @@
 import requests
 import time
-import datetime
-import csv
+# import datetime
 
-starttime=time.time()
-YOUR_FILE_ID="1o6pGvAsk7PrSKXd6TN3J0SBwRLpVVmIPwXR9T5t2S-o"
-DELAY= 3 #3600
+
+starttime = time.time()
+YOUR_FILE_ID = "1o6pGvAsk7PrSKXd6TN3J0SBwRLpVVmIPwXR9T5t2S-o"
+DELAY = 3      # 3600
 
 
 def get_sheet():
     response = requests.get('https://docs.google.com/spreadsheet/ccc?key=' + YOUR_FILE_ID + '&output=csv')
-    name_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+    # name_time = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     lines = [line.split(',') for line in response.text.split('\r\n')]
     keys = lines[0]
     data = []
@@ -24,5 +24,5 @@ def get_sheet():
     return data
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     get_sheet()
